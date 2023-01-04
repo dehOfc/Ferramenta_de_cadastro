@@ -3,6 +3,9 @@ from msilib.schema import ComboBox
 import tkinter as tk
 from tkinter import Entry, ttk
 import datetime as dt
+import pandas as pd
+
+materiais = pd.read_excel('materiais.xlsx', engine = 'openpyxl')
 
 #Criação da função
 
