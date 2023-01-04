@@ -15,7 +15,12 @@ def inserir_codigo():
     quant = entry_quant.get()
     data_criacao = dt.datetime.now()
     data_criacao = data_criacao.strftime(" %d/%m/%y  %H:%M ")
-
+    codigo = materiais.shape[0] + len(lista_codigos)+1
+    codigo_str = "COD-{}".format(codigo)
+    lista_codigos.append(codigo_str, descricao, tipo, quant, data_criacao)
+    
+    
+lista_codigos = []
 lista_tipos = ["Galão", "Caixa", "Saco", "Unidade"]
 
 janela = tk.Tk()
@@ -45,7 +50,8 @@ entry_quant.grid(row= 4, column= 2, padx= 10, pady= 10, sticky= "nswe", columnsp
 botao_criar_codigo = tk.Button(text= "Criar código", command= inserir_codigo)
 botao_criar_codigo.grid(row= 5, column= 0, padx= 10, pady= 10, sticky= "nswe", columnspan= 4)
 
-
-
 janela.mainloop()
 
+novo_material = pd.DataFrame(lista_codigos, columns= ['Código', 'Descrição', 'Tipo', 'Quantidade', 'Data Criação'])
+materiais = materiais.append(novo_material, ignore_index=True)
+materiais.to_excel('materiais.xlsx', index=False)
