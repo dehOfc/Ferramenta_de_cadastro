@@ -5,7 +5,15 @@ from tkinter import Entry, ttk
 import datetime as dt
 import pandas as pd
 
-materiais = pd.read_excel('materiais.xlsx', engine = 'openpyxl')
+
+materiais = pd.read_excel('materiais.xlsx', engine='openpyxl')
+
+
+
+lista_codigos = []
+lista_tipos = ["Galão", "Caixa", "Saco", "Unidade"]
+
+janela = tk.Tk()
 
 #Criação da função
 
@@ -19,12 +27,8 @@ def inserir_codigo():
     codigo_str = "COD-{}".format(codigo)
     lista_codigos.append(codigo_str, descricao, tipo, quant, data_criacao)
     
+ 
     
-lista_codigos = []
-lista_tipos = ["Galão", "Caixa", "Saco", "Unidade"]
-
-janela = tk.Tk()
-
 #Titulo da janel
 
 janela.title("Ferramenta de cadastro de materiais")
